@@ -36,9 +36,10 @@ def game():
 
     while True:
         for event in pygame.event.get():
-            player.update(dt)
             if event.type == pygame.QUIT: # Check if player closes window
                 return
+            
+        player.update(dt)
 
         screen.fill("black")
         player.draw(screen)
