@@ -14,7 +14,6 @@ from constants import (
 from player import Player
 
 def main():
-
     game()
 
 
@@ -27,22 +26,35 @@ def game():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+    
+    # Method 1 of adding sprites to groups (class variable)
+    Player.containers = (updatable, drawable)
+
     # Initialize player with coordinates to middle of screen
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    
+    # Method 2 of adding sprites to groups (adding directly)
+    #player.add(updatable)
+    #player.add(drawable)
+    
 
     # Initialize clock to measure delta time between frames
     clock = pygame.time.Clock()
     dt = 0
 
     while True:
+        # Events and updates
         for event in pygame.event.get():
             if event.type == pygame.QUIT: # Check if player closes window
                 return
-            
-        player.update(dt)
+        updatable.update(dt)
 
+        # Draw
         screen.fill("black")
-        player.draw(screen)
+        for item in drawable:
+            item.draw(screen)
         pygame.display.flip()
         dt = clock.tick(60) / 1000
 
