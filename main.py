@@ -36,7 +36,7 @@ def game():
     Player.containers        = (updatable, drawable)
     Asteroid.containers      = (asteroids, updatable, drawable)
     AsteroidField.containers = (updatable)
-    Shot.containers          = (shots)
+    Shot.containers          = (shots, updatable, drawable)
 
     # Initialize player with coordinates to middle of screen
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
