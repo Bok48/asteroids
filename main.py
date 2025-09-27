@@ -7,10 +7,6 @@ import pygame
 from constants import (
     SCREEN_WIDTH,
     SCREEN_HEIGHT,
-    ASTEROID_MIN_RADIUS,
-    ASTEROID_MAX_RADIUS,
-    ASTEROID_KINDS,
-    ASTEROID_SPAWN_RATE
 )
 from player import Player
 from asteroid import Asteroid
@@ -30,14 +26,16 @@ def game():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
     # Pygame groups for sprites
-    updatable = pygame.sprite.Group()
-    drawable = pygame.sprite.Group()
-    asteroids = pygame.sprite.Group()
+    updatable   = pygame.sprite.Group()
+    drawable    = pygame.sprite.Group()
+    asteroids   = pygame.sprite.Group()
+    shots       = pygame.sprite.Group()
     
     # Method 1 of adding sprites to groups (class variable)
     Player.containers        = (updatable, drawable)
     Asteroid.containers      = (asteroids, updatable, drawable)
     AsteroidField.containers = (updatable)
+    Shot.containers          = (shots)
 
     # Initialize player with coordinates to middle of screen
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
