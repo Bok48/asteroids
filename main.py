@@ -9,6 +9,7 @@ from constants import (
     SCREEN_HEIGHT,
 )
 from player import Player
+from shot import Shot
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
 
