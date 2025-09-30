@@ -22,9 +22,11 @@ def game():
     print(f"Screen width: {SCREEN_WIDTH}")
     print(f"Screen height: {SCREEN_HEIGHT}")
 
-    # Initialize pygame module
+    # Initialize pygame modules
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+
+    pygame.font.init()
 
     # Pygame groups for sprites
     updatable   = pygame.sprite.Group()
@@ -41,6 +43,10 @@ def game():
     # Initialize player with coordinates to middle of screen
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     asteroidfield = AsteroidField()
+
+    font_obj = pygame.font.Font(None, size=36)
+    score_surface = font_obj.render(f"Score: {player.get_score()}", False, "white")
+    score_board = score_surface.get_rect()
     
     # Method 2 of adding sprites to groups (adding directly)
     #player.add(updatable)
@@ -68,11 +74,13 @@ def game():
                 print(f"You got {player.get_score()} points!")
                 sys.exit()
 
+        score_surface = font_obj.render(f"Score: {player.get_score()}", False, "white")
 
         # Draw
         screen.fill("black")
         for item in drawable:
             item.draw(screen)
+        screen.blit(score_surface, score_board)
         pygame.display.flip()
         dt = clock.tick(60) / 1000
 
