@@ -62,8 +62,10 @@ def game():
                 if asteroid.check_collision(shot):
                     asteroid.split()
                     shot.kill()
+                    player.increase_score(1)
             if asteroid.check_collision(player):
                 print("Game over!")
+                print(f"You got {player.get_score()} points!")
                 sys.exit()
 
 
