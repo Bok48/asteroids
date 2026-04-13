@@ -1,6 +1,7 @@
 # Asteroids
 This is a simple version of the video game Asteroids, developed in Python.
 
+
 ## Requirements for launching
 You need this installed on your machine:
 * Python 3.13
@@ -8,10 +9,12 @@ You need this installed on your machine:
 
 Later versions of tools may or may not work.
 
+
 ## How to launch
 1. Download this repository and open a terminal in the root folder of the project.
 2. Enter `source .venv/bin/activate` in the terminal to activate the virtual environment for the project.
 3. Next, enter `uv run main.py` to launch the game.
+
 
 ## How to play
 Use the letters **W, A, S and D** to move the spaceship around.
