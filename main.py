@@ -4,7 +4,10 @@
 import sys
 import pygame
 
-from logger import log_state
+from logger import (
+    log_state,
+    log_event,
+)
 from constants import (
     SCREEN_WIDTH,
     SCREEN_HEIGHT,
@@ -61,7 +64,7 @@ def game():
     # Main game loop
     while True:
         log_state()
-        
+
         # Events and updates
         for event in pygame.event.get():
             if event.type == pygame.QUIT: # Check if player closes window
@@ -70,10 +73,12 @@ def game():
         for asteroid in asteroids:
             for shot in shots:
                 if asteroid.check_collision(shot):
+                    log_event("asteroid_shot")
                     asteroid.split()
                     shot.kill()
                     player.increase_score(1)
             if asteroid.check_collision(player):
+                log_event("player_hit")
                 print("Game over!")
                 print(f"You got {player.get_score()} points!")
                 sys.exit()
