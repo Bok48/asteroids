@@ -4,6 +4,7 @@
 import sys
 import pygame
 
+from logger import log_state
 from constants import (
     SCREEN_WIDTH,
     SCREEN_HEIGHT,
@@ -57,7 +58,10 @@ def game():
     clock = pygame.time.Clock()
     dt = 0
 
+    # Main game loop
     while True:
+        log_state()
+        
         # Events and updates
         for event in pygame.event.get():
             if event.type == pygame.QUIT: # Check if player closes window

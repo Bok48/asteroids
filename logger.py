@@ -33,7 +33,7 @@ def log_state():
     if frame is None:
         return
 
-    frame_back = frame.frame_back
+    frame_back = frame.f_back
     if frame_back is None:
         return
 
@@ -47,7 +47,7 @@ def log_state():
             screen_size = value.get_size()
 
         if hasattr(value, "__class__") and "Group" in value.__class__.__name__:
-            sprites.data = []
+            sprites_data = []
 
             for i, sprite in enumerate(value):
                 if i >= _SPRITE_SAMPLE_LIMIT:
@@ -68,7 +68,7 @@ def log_state():
 
                 sprites_data.append(sprite_info)
 
-            game_state[key] = {"count": len(value), "sprites": sprites.data}
+            game_state[key] = {"count": len(value), "sprites": sprites_data}
 
         if len(game_state) == 0 and hasattr(value, "position"):
             sprite_info = {"type": value.__class__.__name__}
